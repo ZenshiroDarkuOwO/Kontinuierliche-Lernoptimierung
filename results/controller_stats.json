@@ -1,0 +1,12 @@
+{
+  "total_step_calls": 10000,
+  "updates_performed": 996,
+  "updates_skipped": 9004,
+  "skip_rate": 0.9004,
+  "update_rate": 0.0996,
+  "active_components": {
+    "ewc": true,
+    "replay_ref": true,
+    "trigger": true
+  }
+}

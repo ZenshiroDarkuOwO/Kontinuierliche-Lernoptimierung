@@ -1,0 +1,102 @@
+
+dataset:
+  name: "CIC-IoT2023"
+  data_path: "./data/raw/"
+  batch_size: 64
+  num_workers: 2
+  validation_split: 0.2
+  streaming:
+    chunk_size: 500
+    shuffle_chunks: true
+
+model:
+  architecture: "mlp"
+  input_dim: null
+  output_dim: null
+  hidden_layers: [128, 64, 32]
+  dropout: 0.3
+
+continual_learning:
+  mode: "streaming"            
+  epochs_per_task: 10
+  learning_rate: 0.001
+
+ewc:
+  enabled: true
+  lambda: 100.0
+  fisher_sample_size: 200
+  update_fisher_every: 1
+  lambda_schedule: "constant"
+  lambda_growth_factor: 1.0
+  gamma: 1.0
+  fisher_storage: "dense"
+
+replay:
+  enabled: true
+  buffer_size: 500
+  batch_ratio: 0.3
+  strategy: "importance"
+  eviction_policy: "lowest_importance"
+  temperature: 1.0
+  age_decay: 0.001
+
+conflict:
+  enabled: true
+  threshold: 0.5
+  temperature: 1.0
+  top_k_params: null
+  force_high_conflict_ratio: 0.1
+  reevaluate_every_tasks: 3
+
+trigger:
+  enabled: true                 
+  type: "entropy"
+  window_size: 100
+  threshold: 0.03
+  min_update_interval: 10
+  warmup_samples: 50
+  hybrid_weights:
+    entropy: 0.5
+    drift: 0.3
+    performance: 0.2
+  hybrid_rule: "weighted_sum"
+  drift_test: "ks"
+  drift_p_value: 0.05
+  drift_feature_selection: "first_k"
+  drift_feature_dim: 10
+
+evaluation:
+  objectives:
+    - accuracy
+    - forgetting
+    - memory_mb
+    - latency_ms
+  compute_pareto_front: true
+  pareto_reference_point:
+    accuracy: 0.0
+    forgetting: 1.0
+    memory_mb: 1000.0
+    latency_ms: 500.0
+  reference_hardware: "auto"
+  log_hardware_specs: true
+
+optimization:
+  method: "grid"
+  trials: 100
+  grid:
+    ewc_lambda: [10, 50, 100, 500, 1000]
+    replay_buffer_size: [100, 300, 500, 1000]
+    trigger_threshold: [0.05, 0.10, 0.15, 0.20, 0.30]
+    replay_strategy: ["random", "importance", "conflict_aware"]
+  random:
+    ewc_lambda: {min: 1.0, max: 1000.0, distribution: "log_uniform"}
+    replay_buffer_size: {min: 50, max: 2000, distribution: "uniform_int"}
+    trigger_threshold: {min: 0.01, max: 0.50, distribution: "uniform"}
+
+output:
+  results_dir: "./results/"
+  models_dir: "./saved_models/"
+  log_level: "INFO"
+  save_model: true
+  save_metrics: true
+  save_config: true

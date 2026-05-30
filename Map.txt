@@ -1,0 +1,25 @@
+conflict_aware_cl/
+├── config/
+│   └── default_config.yaml
+├── data/
+│   ├── __init__.py
+│   └── data_loader.py
+├── models/
+│   ├── __init__.py
+│   └── base_model.py
+├── methods/
+│   ├── __init__.py
+│   ├── ewc.py
+│   ├── replay.py
+│   ├── conflict_aware_replay.py
+│   ├── trigger.py
+│   └── controller.py
+├── core/
+│   ├── __init__.py
+│   ├── system_builder.py
+│   └── cl_system.py
+├── utils/
+│   ├── __init__.py
+│   └── config_loader.py
+├── main.py
+└── requirements.txt
