@@ -1,4 +1,6 @@
 # Lightweight Continual Learning for DDoS Attack Detection in IoT Networks
+Masterarbeit: Design and Optimization of a Lightweight Continual Learning Model for DDoS Attack Detection in the Internet of Things
+
 
 ## Forschungsprojekt – Masterarbeit
 
@@ -381,6 +383,11 @@ Empfohlen werden:
 Installation der Abhängigkeiten:
 
 ```bash
+git clone https://github.com/ZenshiroDarkuOwO/conflict_aware_cl.git
+cd conflict_aware_cl
+python -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# oder: .venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
@@ -459,7 +466,7 @@ Die Implementierung dient der experimentellen Untersuchung der entwickelten Meth
 
 # 📌 Projektstatus
 
-**Status:** In Entwicklung / Forschungsprototyp
+**Status:** Abgeschlossen / Forschungsprototyp
 
 Die Implementierung befindet sich im Rahmen der wissenschaftlichen Evaluation. Konfigurationsparameter, Modellarchitektur und einzelne Komponenten können im Verlauf weiterer Experimente angepasst und erweitert werden.
 
@@ -484,9 +491,9 @@ Eine vollständige Darstellung der theoretischen Grundlagen und der verwendeten 
 
 # 📄 Lizenz
 
-Dieses Repository wurde primär zu wissenschaftlichen und akademischen Zwecken erstellt.
+Dieses Projekt steht unter der MIT Lizenz.
 
-Die Verwendung, Weiterentwicklung und Weiterveröffentlichung des Codes sollte unter Berücksichtigung der jeweiligen Lizenzen der verwendeten Bibliotheken und Datensätze erfolgen.
+Die verwendeten Datensätze (z. B. CIC-IoT2023) unterliegen ihren eigenen Nutzungsbedingungen.
 
 ---
 
